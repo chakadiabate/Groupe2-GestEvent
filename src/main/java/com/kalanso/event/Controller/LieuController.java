@@ -15,6 +15,12 @@ public class LieuController {
     @Autowired
     private Lieu_service lieu_service;
 
+    @PostMapping
+    public ResponseEntity<Lieu> ajouterLieu(@RequestBody Lieu lieu) {
+        Lieu nouveauLieu = lieu_service.ajouterLieu(lieu);
+        return ResponseEntity.ok(nouveauLieu);
+    }
+
     @GetMapping
     public List<Lieu> getAllLieux() {
         return lieu_service.getAllLieu();

@@ -15,6 +15,11 @@ public class Lieu_service {
     private Lieu_repo lieu_repo;
 
 
+    // Ajouter un lieu
+    public Lieu ajouterLieu(Lieu lieu) {
+        return lieu_repo.save(lieu);
+    }
+
     public List<Lieu> getAllLieu() {
         return lieu_repo.findAll();
     }
