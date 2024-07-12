@@ -12,6 +12,7 @@ public class Lieu {
     private Integer id;
     private String nom;
     private String adresse;
+    private String salle;
     private Integer capacite;
     // Getters, setters, constructeurs
 }
