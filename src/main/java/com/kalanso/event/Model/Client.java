@@ -11,7 +11,4 @@ import lombok.Setter;
 @Table(name="CLIENT")
 public class Client extends Utilisateur{
 
-    public Client(String username, String motDePasse){
-        super(username, motDePasse, TypeRole.CLIENT);
-    }
 }

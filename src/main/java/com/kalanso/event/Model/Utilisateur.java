@@ -19,15 +19,10 @@ public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
+    private String nom;
+    private String prenom;
     private String motDePasse;
+    private Long tel;
 
-    @Enumerated(EnumType.STRING)
-    private TypeRole role;
 
-    public Utilisateur(String username, String motDePasse, TypeRole role) {
-        this.username = username;
-        this.motDePasse = motDePasse;
-        this.role = role;
-    }
 }

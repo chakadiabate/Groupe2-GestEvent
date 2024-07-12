@@ -12,7 +12,4 @@ import lombok.Setter;
 @Entity
 public class Organisateur extends Utilisateur{
 
-    public Organisateur(String username, String motDePasse){
-        super(username, motDePasse, TypeRole.ORGANISATEUR);
-    }
 }
