@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Folder that will be ignore ###
+target/
+.mvn/
+.idea/
