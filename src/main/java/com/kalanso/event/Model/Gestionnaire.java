@@ -3,12 +3,13 @@ package com.kalanso.event.Model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@Table(name="GSETIONNAIRE")
+@NoArgsConstructor
 @Getter
 @Setter
-@Table(name="ADMIN")
-@Entity
-public class Admin extends Utilisateur{
-
+public class Gestionnaire extends Utilisateur{
 }
