@@ -31,12 +31,6 @@ public class Notif_service_compteCrée_impl implements Notification_service {
 
     public void SendMail(Notification notification) throws MessagingException, IOException, DocumentException, WriterException{
 
-
-        String qrCodeText = generateRandomString.generateRandomString();
-
-        byte[] qrCodeImage = qrCodeService.generateQRCode(qrCodeText, 250, 250);
-        InputStreamSource qrCodeSource = new ByteArrayResource(qrCodeImage);
-
         String content ="<!DOCTYPE html>" +
         "<html>" +
         "<head>" +
@@ -73,18 +67,7 @@ public class Notif_service_compteCrée_impl implements Notification_service {
         helper.setSubject(notification.getSujet());
         helper.setSentDate(notification.getDateEnvoi());
         helper.setText(content, true);
-        helper.addInline("qrcode", qrCodeSource, "image/png");
         System.out.println("hello");
-
-        byte[] pdfBytes = generatePdfFromHtml.generatePdfFromHtml(content);
-
-        // Convert PDF to image
-        byte[] imageBytes = generateImageFromPdf.generateImageFromPdf(pdfBytes);
-
-
-        // Add image attachment
-        InputStreamSource imageSource = new ByteArrayResource(imageBytes);
-        helper.addAttachment("ticket.png", imageSource);
 
 
         javaMailSender.send(message);
