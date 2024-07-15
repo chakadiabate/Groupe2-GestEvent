@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.management.relation.Role;
+
 @Entity
 @Table(name = "utilisateur")
 @NoArgsConstructor
@@ -21,8 +23,17 @@ public class Utilisateur {
     private Long id;
     private String nom;
     private String prenom;
-    private String motDePasse;
-    private Long tel;
 
+    @Column(unique = true)
+    private String Email;
+
+    @Column(unique = true)
+    private Long telephone;
+
+    @Column(unique = true)
+    private String motDePasse;
+
+    @OneToOne
+    private Role role;
 
 }
