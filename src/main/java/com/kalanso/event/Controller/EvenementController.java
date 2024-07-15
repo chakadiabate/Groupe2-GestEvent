@@ -1,6 +1,8 @@
 package com.kalanso.event.Controller;
 
 import com.kalanso.event.Model.Admin;
+import com.kalanso.event.Model.Evenement;
+import com.kalanso.event.Service.Evenement_service;
 import com.kalanso.event.Service.Utilisateur_service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -11,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Controller
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/event")
 @AllArgsConstructor
-public class UtilisateurController {
+public class EvenementController {
 
-    private Utilisateur_service utilisateurService;
+    private Evenement_service evenementService;
 
-    @PostMapping("/admin")
-    private Admin ajout (@RequestBody Admin admin){
-        return utilisateurService.Ajout(admin);
+    @PostMapping("/addEvent")
+    private String ajout (@RequestBody Evenement evenement){
+        return evenementService.Ajout(evenement);
     }
 
 }
