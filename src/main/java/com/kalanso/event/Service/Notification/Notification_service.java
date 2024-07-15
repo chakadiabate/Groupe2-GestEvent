@@ -6,6 +6,7 @@ import com.lowagie.text.DocumentException;
 import jakarta.mail.MessagingException;
 
 import java.io.IOException;
+import java.util.List;
 
 public interface Notification_service {
 
@@ -16,11 +17,9 @@ public interface Notification_service {
     Notification Ajouter (Notification notification);
 
     //Methode pour Afficher une notification à la BD.
-    Notification Afficher (Notification notification);
+    List<Notification> Afficher ();
 
     //Methode pour supprimer une notification à la BD.
-    Notification Delete (Notification notification);
+    String Delete (Integer id);
 
-    //Methode pour mis à jour une notification à la BD.
-    Notification Update (Notification notification);
 }

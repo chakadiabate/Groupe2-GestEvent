@@ -1,57 +1,37 @@
 package com.kalanso.event.Service;
 
 
-import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import com.google.zxing.WriterException;
 import com.kalanso.event.Model.Notification;
 import com.kalanso.event.Repository.Notification_repo;
-import org.apache.pdfbox.pdmodel.PDDocument;
 import com.lowagie.text.DocumentException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
-import org.apache.pdfbox.rendering.PDFRenderer;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamSource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.core.io.ByteArrayResource;
-import org.springframework.core.io.InputStreamSource;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.WriterException;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import org.springframework.stereotype.Service;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.security.SecureRandom;
-import java.util.HashMap;
-import java.util.Map;
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-
-
-
 import java.util.List;
-import java.util.Random;
 
 @Service
 @AllArgsConstructor
-public class Notif_service_impl implements Notification_service {
+public class Notif_serviceTicket_impl implements Notification_service {
 
     private Notification_repo notificationRepo;
     private JavaMailSender javaMailSender;
     private QRCodeService qrCodeService;
+    private generatePdfFromHtml generatePdfFromHtml;
+    private GenerateImageFromPdf generateImageFromPdf;
+    private GenerateRandomString generateRandomString;
 
     public void SendMail(Notification notification) throws MessagingException, IOException, DocumentException, WriterException{
 
 
-        String qrCodeText = generateRandomString();
+        String qrCodeText = generateRandomString.generateRandomString();
 
         byte[] qrCodeImage = qrCodeService.generateQRCode(qrCodeText, 250, 250);
         InputStreamSource qrCodeSource = new ByteArrayResource(qrCodeImage);
@@ -171,10 +151,10 @@ public class Notif_service_impl implements Notification_service {
         helper.addInline("qrcode", qrCodeSource, "image/png");
         System.out.println("hello");
 
-        byte[] pdfBytes = generatePdfFromHtml(Content_Qrcode);
+        byte[] pdfBytes = generatePdfFromHtml.generatePdfFromHtml(Content_Qrcode);
 
         // Convert PDF to image
-        byte[] imageBytes = generateImageFromPdf(pdfBytes);
+        byte[] imageBytes = generateImageFromPdf.generateImageFromPdf(pdfBytes);
 
         // Add PDF attachment
         InputStreamSource pdfSource = new ByteArrayResource(pdfBytes);
@@ -192,70 +172,19 @@ public class Notif_service_impl implements Notification_service {
 
     @Override
     public Notification Ajouter(Notification notification) {
-        return null;
+        return notificationRepo.save(notification);
     }
 
     @Override
-    public Notification Afficher(Notification notification) {
-        return null;
+    public List<Notification> Afficher() {
+        return notificationRepo.findAll();
     }
 
     @Override
-    public Notification Delete(Notification notification) {
-        return null;
+    public String Delete(Integer id) {
+        notificationRepo.deleteById(id);
+        return "Votre notification a ete supprimee avec succes";
     }
 
-    @Override
-    public Notification Update(Notification notification) {
-        return null;
-    }
-
-    private byte[] generatePdfFromHtml(String html) throws IOException, DocumentException {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        org.xhtmlrenderer.pdf.ITextRenderer renderer = new org.xhtmlrenderer.pdf.ITextRenderer();
-        renderer.setDocumentFromString(html);
-        renderer.layout();
-        renderer.createPDF(outputStream);
-        return outputStream.toByteArray();
-    }
-
-    private byte[] generateImageFromPdf(byte[] pdfBytes) throws IOException {
-        ByteArrayInputStream inputStream = new ByteArrayInputStream(pdfBytes);
-        PDDocument document = PDDocument.load(inputStream);
-        PDFRenderer pdfRenderer = new PDFRenderer(document);
-        BufferedImage image = pdfRenderer.renderImageWithDPI(0, 300); // Render the first page with 300 DPI
-
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ImageIO.write(image, "png", outputStream);
-        document.close();
-
-        return outputStream.toByteArray();
-    }
-
-    public byte[] generateQRCode(String text, int width, int height) throws WriterException, IOException {
-        QRCodeWriter qrCodeWriter = new QRCodeWriter();
-        Map<EncodeHintType, Object> hints = new HashMap<>();
-        hints.put(EncodeHintType.CHARACTER_SET, "UTF-8");
-
-        hints.put(EncodeHintType.MARGIN, 1); // Reduce margin to 1
-        hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-        BitMatrix bitMatrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height, hints);
-
-        ByteArrayOutputStream pngOutputStream = new ByteArrayOutputStream();
-        BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
-        javax.imageio.ImageIO.write(bufferedImage, "PNG", pngOutputStream);
-        return pngOutputStream.toByteArray();
-    }
-    public String generateRandomString() {
-        String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&é(-è_çà)=#{|!§/:?%µ£@]}[";
-        int LENGTH = 26;
-        Random RANDOM = new SecureRandom();
-
-        StringBuilder sb = new StringBuilder(LENGTH);
-        for (int i = 0; i < LENGTH; i++) {
-            sb.append(CHARACTERS.charAt(RANDOM.nextInt(CHARACTERS.length())));
-        }
-        return sb.toString();
-    }
 }
 
