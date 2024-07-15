@@ -8,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name="CLIENT")
 public class Client extends Utilisateur{
 
 }

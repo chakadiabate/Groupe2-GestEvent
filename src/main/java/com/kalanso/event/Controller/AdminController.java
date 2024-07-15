@@ -29,7 +29,7 @@ public class AdminController {
         return adminService.modifierAdmin(id, admin);
     }
 
-    @DeleteMapping("/SupprmierAdmin/{id]}")
+    @DeleteMapping("/SupprmierAdmin/{id}")
     public  String supprimerAdmin( @PathVariable Integer id){
         return adminService.supprimerAdmin(id);
     }

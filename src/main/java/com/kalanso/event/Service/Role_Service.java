@@ -1,6 +1,6 @@
 package com.kalanso.event.Service;
 
-import com.kalanso.event.Model.Role;
+import com.kalanso.event.Model.RoleUser;
 import com.kalanso.event.Repository.RoleRepo;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +11,11 @@ import java.util.List;
 public class Role_Service {
     private RoleRepo roleRepo;
 
-    public Role AjouterRole(Role Ro){
+    public RoleUser AjouterRole(RoleUser Ro){
         return roleRepo.save(Ro);
     }
 
-    public List<Role> ListeRole(){
+    public List<RoleUser> ListeRole(){
         return roleRepo.findAll();
     }
 
@@ -24,10 +24,10 @@ public class Role_Service {
         return "Role supprimer avec succès";
     }
 
-    public Role ModifierCategorie(long id, Role role){
+    public RoleUser ModifierCategorie(long id, RoleUser roleUser){
         return roleRepo.findById(id)
                 .map(R->{
-                    R.setNom(role.getNom());
+                    R.setRole(roleUser.getRole());
                     return roleRepo.save(R);
                 }).orElseThrow(()-> new RuntimeException("Role non trouvée"));
     }

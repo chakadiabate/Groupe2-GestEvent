@@ -1,6 +1,7 @@
 package com.kalanso.event.Model;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -8,16 +9,18 @@ import lombok.Setter;
 import java.util.List;
 
 @Entity
+@Data
 @NoArgsConstructor
 @Getter
 @Setter
-public class Equipement {
+public class StatutEnvoi {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private  long Id;
+    private String statutEnvoi;
 
-    @ManyToOne
-    @JoinColumn(name = "prestateur_id")
-    private Prestateur prestateur;
+    @OneToMany(mappedBy = "status")
+    private List<Notification> notification;
+
 }

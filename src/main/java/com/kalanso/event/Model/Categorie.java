@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "categories")
 @NoArgsConstructor
 public class Categorie {
     @Id

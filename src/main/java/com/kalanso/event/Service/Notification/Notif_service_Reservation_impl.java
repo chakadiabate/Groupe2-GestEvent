@@ -16,7 +16,8 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamSource;
 import com.google.zxing.WriterException;
 import java.io.IOException;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Service
 @AllArgsConstructor
@@ -86,6 +87,9 @@ public class Notif_service_Reservation_impl {
         byte[] qrCodeImage = qrCodeService.generateQRCode(qrCodeText, 250, 250);
         InputStreamSource qrCodeSource = new ByteArrayResource(qrCodeImage);
 
+        String qrCodeFileName = "./uploads/qrcode.png"; // Remplacez par le chemin de votre dossier
+        Files.write(Paths.get(qrCodeFileName), qrCodeImage);
+
         String Content_Qrcode = "<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
@@ -152,7 +156,7 @@ public class Notif_service_Reservation_impl {
                 "        <div class=\"ticket-container\">\n" +
                 "            <h2>[Titre Event]</h2>\n" +
                 "            <div class=\"ticket\">\n" +
-                "                <img src='cid:qrcode' alt=\"Code QR du Ticket\"></img>\n" +
+                "                <img src='" + qrCodeFileName + "' alt=\"Code QR du Ticket\"></img>\n" +
                 "                <div class=\"ticket-details\">\n" +
                 "                    <p>Nom : [Nom]</p>\n" +
                 "                    <p>Email : [Email]</p>\n" +

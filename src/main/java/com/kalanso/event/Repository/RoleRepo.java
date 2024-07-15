@@ -1,7 +1,7 @@
 package com.kalanso.event.Repository;
 
-import com.kalanso.event.Model.Role;
+import com.kalanso.event.Model.RoleUser;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface RoleRepo extends JpaRepository<Role, Long> {
+public interface RoleRepo extends JpaRepository<RoleUser, Long> {
 }

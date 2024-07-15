@@ -4,9 +4,10 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
-@Table(name = "lieu")
 @NoArgsConstructor
 public class Lieu {
     @Id
@@ -16,5 +17,8 @@ public class Lieu {
     private String adresse;
     private String salle;
     private Integer capacite;
+
+    @OneToMany(mappedBy = "lieu")
+    private List<Derouler> derouler;
     // Getters, setters, constructeurs
 }

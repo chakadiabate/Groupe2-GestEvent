@@ -1,11 +1,11 @@
-package com.kalanso.event.Model;
+/*package com.kalanso.event.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Entity
+//@Entity
 @Data
 @Table(name = "inscriptions")
 public class Inscription {
@@ -21,4 +21,4 @@ public class Inscription {
     private LocalDateTime dateInscription;
     private String statut;
     // Getters, setters, constructeurs
-}
+}*/

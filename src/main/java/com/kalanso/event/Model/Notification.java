@@ -4,15 +4,11 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.lang.reflect.Type;
-import java.time.LocalDateTime;
 import java.util.Date;
 
-import static com.fasterxml.jackson.databind.type.LogicalType.DateTime;
 
 @Entity
 @Data
-@Table(name = "notifications")
 @NoArgsConstructor
 public class Notification {
 
@@ -29,7 +25,11 @@ public class Notification {
 
     private String sujet;
     private Date dateEnvoi = new Date();
-    private String statutEnvoi;
+
+    @ManyToOne
+    @JoinColumn(name = "statutEnvoi_id")
+    private StatutEnvoi status;
+
     private String message;
     private String dest_email;
 }

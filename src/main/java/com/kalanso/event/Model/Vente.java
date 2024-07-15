@@ -8,17 +8,23 @@ import java.time.LocalDateTime;
 
 @Entity
 @Data
-@Table(name = "ventes")
 public class Vente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "billet_id")
     private Billet billet;
-    @ManyToOne
+
+/*  @ManyToOne
     @JoinColumn(name = "participant_id")
-    private Participant participant;
+    private Participant participant;*/
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
+
     private LocalDateTime dateVente;
     private BigDecimal montant;
     // Getters, setters, constructeurs

@@ -1,9 +1,9 @@
 package com.kalanso.event.Service;
 
-import com.kalanso.event.Enumerations.StatutReservation;
 import com.kalanso.event.Model.Reservation;
+import com.kalanso.event.Model.StatutReservation;
 import com.kalanso.event.Repository.Reservation_repo;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.kalanso.event.Repository.StatutRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,8 +11,10 @@ import java.util.List;
 
 @Service
 public class Reservation_serviceImpl implements Reservation_service {
-    final
-    Reservation_repo reservationRepo;
+
+    private Reservation_repo reservationRepo;
+    private StatutRepo statutRepo;
+
 
     public Reservation_serviceImpl(Reservation_repo reservationRepo) {
         this.reservationRepo = reservationRepo;
@@ -25,8 +27,9 @@ public class Reservation_serviceImpl implements Reservation_service {
     }
 
     @Override
-    public Reservation AnnulerReservation(Reservation reservation) {
-        reservation.setStatut(StatutReservation.ANNULEE);
+    public Reservation AnnulerReservation(Reservation reservation, String Statut) {
+        StatutReservation statutReservation = statutRepo.findByStatut(Statut);
+        reservation.setStatut(statutReservation);
         return reservationRepo.save(reservation);
     }
     @Override

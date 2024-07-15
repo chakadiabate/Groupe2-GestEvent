@@ -7,17 +7,16 @@ import lombok.Setter;
 
 import java.util.List;
 
-@Entity
-@NoArgsConstructor
 @Getter
 @Setter
-public class Equipement {
-
-    @Id
+@NoArgsConstructor
+@Entity
+public class RoleUser {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @Id
+    private Long id;
+    private String role;
 
-    @ManyToOne
-    @JoinColumn(name = "prestateur_id")
-    private Prestateur prestateur;
+    @OneToMany(mappedBy = "role")
+    private List<Utilisateur> utilisateur;
 }

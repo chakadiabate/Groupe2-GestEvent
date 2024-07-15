@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Data
-@Table(name = "evenements")
 @NoArgsConstructor
 public class Evenement {
     @Id
@@ -27,9 +26,15 @@ public class Evenement {
     @JoinColumn(name = "user_id")
     private Utilisateur utilisateur;
 
+    @ManyToOne
+    @JoinColumn(name = "categories")
+    private CategorieEvent category;
+
     @OneToMany(mappedBy = "evenement")
     private List<Notification> notification;
 
+    @OneToMany(mappedBy = "evenement")
+    private List<Derouler> derouler;
 
     // Getters, setters, constructeurs
 }
