@@ -26,12 +26,12 @@ public class ClientController {
     }
 
     @PutMapping("/ModifierClient")
-    public Client modifierClient(@PathVariable Long id,@RequestBody Client client){
+    public Client modifierClient(@PathVariable int id,@RequestBody Client client){
         return clientSercive.modifierClient(id, client);
     }
 
     @DeleteMapping("/SupprimerClient")
-    public String supprimerClient(@PathVariable Long id){
+    public String supprimerClient(@PathVariable int id){
         return clientSercive.supprimerClient(id);
     }
 

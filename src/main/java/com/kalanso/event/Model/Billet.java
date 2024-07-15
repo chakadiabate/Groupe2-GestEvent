@@ -1,12 +1,14 @@
 package com.kalanso.event.Model;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
 @Table(name = "billet")
+@NoArgsConstructor
 public class Billet {
 
     @Id

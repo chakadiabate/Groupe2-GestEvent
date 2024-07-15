@@ -26,12 +26,12 @@ public class GestionnaireController {
     }
 
     @PutMapping("/ModifierGestionnaire")
-    public Gestionnaire modifierGestionnaire(@PathVariable Long id,@RequestBody Gestionnaire gestionnaire){
+    public Gestionnaire modifierGestionnaire(@PathVariable int id,@RequestBody Gestionnaire gestionnaire){
         return gestionnaireService.modifierGestionnaire(id, gestionnaire);
     }
 
     @DeleteMapping("/SupprimerGestionnaire")
-    public String SupprimerGestionnaire(@PathVariable Long id){
+    public String SupprimerGestionnaire(@PathVariable int id){
         return gestionnaireService.SupprimerGestionnaire(id);
     }
 }
