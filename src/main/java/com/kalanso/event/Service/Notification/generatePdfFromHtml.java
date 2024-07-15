@@ -3,6 +3,7 @@ package com.kalanso.event.Service.Notification;
 import com.lowagie.text.DocumentException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.xhtmlrenderer.pdf.ITextRenderer;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class generatePdfFromHtml {
 
     byte[] generatePdfFromHtml(String html) throws IOException, DocumentException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        org.xhtmlrenderer.pdf.ITextRenderer renderer = new org.xhtmlrenderer.pdf.ITextRenderer();
+        ITextRenderer renderer = new org.xhtmlrenderer.pdf.ITextRenderer();
         renderer.setDocumentFromString(html);
         renderer.layout();
         renderer.createPDF(outputStream);

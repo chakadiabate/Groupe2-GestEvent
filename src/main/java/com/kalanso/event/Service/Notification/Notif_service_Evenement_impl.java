@@ -24,10 +24,6 @@ public class Notif_service_Evenement_impl {
 
     private Notification_repo notificationRepo;
     private JavaMailSender javaMailSender;
-    private QRCodeService qrCodeService;
-    private generatePdfFromHtml generatePdfFromHtml;
-    private GenerateImageFromPdf generateImageFromPdf;
-    private GenerateRandomString generateRandomString;
 
     public void SendMail(Notification notification) throws MessagingException, IOException, DocumentException, WriterException{
         String content ="<!DOCTYPE html>" +

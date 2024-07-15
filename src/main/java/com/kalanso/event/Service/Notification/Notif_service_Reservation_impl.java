@@ -31,22 +31,16 @@ public class Notif_service_Reservation_impl {
 
     public void sendMailWelcome(Notification notification) throws MessagingException, IOException, DocumentException, WriterException{
 
-
-        String qrCodeText = generateRandomString.generateRandomString();
-
-        byte[] qrCodeImage = qrCodeService.generateQRCode(qrCodeText, 250, 250);
-        InputStreamSource qrCodeSource = new ByteArrayResource(qrCodeImage);
-
         String content ="<!DOCTYPE html>\n" +
                 "<html>\n" +
                 "<head>\n" +
                 "    <style>\n" +
-                "        body { font-family: 'Roboto', sans-serif; background-color: #fff; color: white; margin: 0; padding: 0; }\n" +
-                "        .container { max-width: 600px; margin: auto; padding: 20px; background-color: #1f1f1f; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }\n" +
-                "        .header { background-color: #ff4081; padding: 20px; border-radius: 10px 10px 0 0; text-align: center; }\n" +
+                "        body { font-family: 'Roboto', sans-serif; background-color: #ffffff; color: white; margin: 0; padding: 0; }\n" +
+                "        .container { max-width: 600px; margin: auto; padding: 20px; background-color: #1f1f1f; color: white;border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }\n" +
+                "        .header { background-color: #ff7000; padding: 20px; border-radius: 10px 10px 0 0; text-align: center; }\n" +
                 "        .header h1 { margin: 0; font-size: 24px; }\n" +
                 "        .content { padding: 20px; }\n" +
-                "        @page { width : 300px; height: 100px; margin: 1in; }" +
+                "        @page { width : 300px; height: 100px; }" +
                 "        .content p { line-height: 1.6; }\n" +
                 "        .footer { text-align: center; color: #888; font-size: 12px; padding: 10px; border-radius: 0 0 10px 10px; background-color: #2c2c2c; }\n" +
                 "    </style>\n" +
@@ -79,7 +73,6 @@ public class Notif_service_Reservation_impl {
         helper.setSubject(notification.getSujet());
         helper.setSentDate(notification.getDateEnvoi());
         helper.setText(content, true);
-        helper.addInline("qrcode", qrCodeSource, "image/png");
         System.out.println("hello");
 
         javaMailSender.send(message);
@@ -149,7 +142,9 @@ public class Notif_service_Reservation_impl {
                 "                padding: 5px;\n" +
                 "            }\n" +
                 "        }\n" +
-                "       @page { size: 300px 100px }" +
+                "       @page {\n" +
+                "           size: A8;\n " +
+                "           margin: 2%; }\n" +
                 "    </style>\n" +
                 "</head>\n" +
                 "<body>\n" +
@@ -185,7 +180,13 @@ public class Notif_service_Reservation_impl {
 
         // Convert PDF to image
         byte[] imageBytes = generateImageFromPdf.generateImageFromPdf(pdfBytes);
-        
+
+        InputStreamSource pdfSource = new ByteArrayResource(pdfBytes);
+        helper.addAttachment("ticket.pdf", pdfSource);
+
+        // Add image attachment
+        InputStreamSource imageSource = new ByteArrayResource(imageBytes);
+        helper.addAttachment("ticket.png", imageSource);
 
         javaMailSender.send(message);
         notificationRepo.save(notification);

@@ -6,10 +6,9 @@ import com.kalanso.event.Service.Evenement_service;
 import com.kalanso.event.Service.Utilisateur_service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 @RestController
@@ -24,4 +23,19 @@ public class EvenementController {
         return evenementService.Ajout(evenement);
     }
 
+
+    @GetMapping("/afficher")
+    private List<Evenement> Afficher(Evenement evenement) {
+        return evenementService.Afficher(evenement);
+    }
+
+    @DeleteMapping("/delete")
+    public String Delete(Evenement evenement) {
+        return evenementService.Delete(evenement);
+    }
+
+    @PutMapping("/update")
+    public Evenement update(Evenement evenement) {
+        return evenementService.update(evenement);
+    }
 }
