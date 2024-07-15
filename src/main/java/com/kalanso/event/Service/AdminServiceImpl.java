@@ -19,9 +19,8 @@ public class AdminServiceImpl implements AdminService{
     private final AdminRepo adminRepo;
 
     @Override
-    public Admin creerAdmin(Admin admin) {
-
-        return adminRepo.save(admin);
+    public Admin creerAdmin(Admin admin) {;
+        return adminRepo.save(admin) ;
     }
 
     @Override
@@ -30,21 +29,21 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public Admin modifierAdmin(Long id, Admin admin) {
+    public Admin modifierAdmin(Integer id, Admin admin) {
 
             return adminRepo.findById(id)
                     .map(p->{
                         p.setNom(admin.getNom());
                         p.setPrenom(admin.getPrenom());
                         p.setEmail(admin.getEmail());
-                        p.setTelephone(admin.getTelephone());
                         p.setMotDePasse(admin.getMotDePasse());
+                        p.setTelephone(admin.getTelephone());
                         return adminRepo.save(p);
-                    }) .orElseThrow(()->new RuntimeException("id NON trouvé!!"));
+                    }).orElseThrow(()->new RuntimeException("Id non trouvé pour changer l'admin"));
     }
 
     @Override
-    public String supprimerAdmin(Long id) {
+    public String supprimerAdmin(Integer id) {
         adminRepo.deleteById(id);
         return "Admin Supprimer";
     }

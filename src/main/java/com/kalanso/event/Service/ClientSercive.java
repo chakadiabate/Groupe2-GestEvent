@@ -7,6 +7,6 @@ import java.util.List;
 public interface ClientSercive {
     Client creerClient(Client client);
     List<Client> listerClient();
-    Client modifierClient(Long id,Client client);
-    String supprimerClient(Long id);
+    Client modifierClient(Integer id,Client client);
+    String supprimerClient(Integer id);
 }

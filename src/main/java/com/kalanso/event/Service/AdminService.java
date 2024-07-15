@@ -10,7 +10,7 @@ public interface AdminService {
 
     Admin creerAdmin(Admin admin);
     List<Admin> listerAdmin();
-    Admin modifierAdmin(Long id,Admin admin);
-    String supprimerAdmin(Long id);
+    Admin modifierAdmin(Integer id,Admin admin);
+    String supprimerAdmin(Integer id);
 
 }

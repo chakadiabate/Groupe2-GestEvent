@@ -7,6 +7,6 @@ import java.util.List;
 public interface GestionnaireService {
     Gestionnaire CreerGestionnaire(Gestionnaire gestionnaire);
     List<Gestionnaire> listeGestionnaire();
-    Gestionnaire modifierGestionnaire(Long id, Gestionnaire gestionnaire);
-    String SupprimerGestionnaire(Long id);
+    Gestionnaire modifierGestionnaire(Integer id, Gestionnaire gestionnaire);
+    String SupprimerGestionnaire(Integer id);
 }

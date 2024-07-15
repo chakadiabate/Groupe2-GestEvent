@@ -29,7 +29,7 @@ public class OrgaServiceImpl implements OrgaService{
     }
 
     @Override
-    public Organisateur modifierOrganisateur(Long id, Organisateur organisateur) {
+    public Organisateur modifierOrganisateur(Integer id, Organisateur organisateur) {
         return orgaRepo.findById(id)
                 .map(p->{
                         p.setNom(organisateur.getNom());
@@ -42,7 +42,7 @@ public class OrgaServiceImpl implements OrgaService{
     }
 
     @Override
-    public String supprimerOrganisateur(Long id) {
+    public String supprimerOrganisateur(Integer id) {
         orgaRepo.deleteById(id);
         return "Organisateur supprimer";
     }

@@ -9,8 +9,8 @@ public interface OrgaService {
 
     Organisateur creerOrganisateur(Organisateur organisateur);
     List<Organisateur> listerOrganisateur();
-    Organisateur modifierOrganisateur(Long id,Organisateur organisateur);
-    String supprimerOrganisateur(Long id);
+    Organisateur modifierOrganisateur(Integer id,Organisateur organisateur);
+    String supprimerOrganisateur(Integer id);
 
 
 }

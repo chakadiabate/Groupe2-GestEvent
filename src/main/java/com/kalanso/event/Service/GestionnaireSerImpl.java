@@ -30,7 +30,7 @@ public class GestionnaireSerImpl implements GestionnaireService{
     }
 
     @Override
-    public Gestionnaire modifierGestionnaire(Long id, Gestionnaire gestionnaire) {
+    public Gestionnaire modifierGestionnaire(Integer id, Gestionnaire gestionnaire) {
         return gestionnaireRepo.findById(id)
                 .map(p->{
                     p.setNom(gestionnaire.getNom());
@@ -43,7 +43,7 @@ public class GestionnaireSerImpl implements GestionnaireService{
     }
 
     @Override
-    public String SupprimerGestionnaire(Long id) {
+    public String SupprimerGestionnaire(Integer id) {
         gestionnaireRepo.deleteById(id);
         return "Gestionnaire supprimer avec succès";
     }

@@ -25,12 +25,12 @@ public class AdminController {
     }
 
     @PutMapping("/ModifierAdmin/{id}")
-    public Admin modifierAdmin(@PathVariable Long id, @RequestBody Admin admin){
+    public Admin modifierAdmin(@PathVariable Integer id, @RequestBody Admin admin){
         return adminService.modifierAdmin(id, admin);
     }
 
     @DeleteMapping("/SupprmierAdmin/{id]}")
-    public  String supprimerAdmin( @PathVariable Long id){
+    public  String supprimerAdmin( @PathVariable Integer id){
         return adminService.supprimerAdmin(id);
     }
 }

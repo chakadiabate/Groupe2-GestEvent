@@ -29,7 +29,7 @@ public class ClientServiceImpl implements ClientSercive{
     }
 
     @Override
-    public Client modifierClient(Long id, Client client) {
+    public Client modifierClient(Integer id, Client client) {
         return clientRepo.findById(id)
                 .map(p->{
                     p.setNom(client.getNom());
@@ -42,7 +42,7 @@ public class ClientServiceImpl implements ClientSercive{
     }
 
     @Override
-    public String supprimerClient(Long id) {
+    public String supprimerClient(Integer id) {
         clientRepo.deleteById(id);
         return "Client supprimer";
     }

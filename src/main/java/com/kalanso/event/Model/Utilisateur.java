@@ -33,7 +33,8 @@ public class Utilisateur {
     @Column(unique = true)
     private String motDePasse;
 
-    @OneToOne
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     private Role role;
 
 }
