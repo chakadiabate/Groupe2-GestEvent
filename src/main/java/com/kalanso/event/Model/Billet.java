@@ -1,24 +1,29 @@
 package com.kalanso.event.Model;
-
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "billets")
+@Table(name = "billet")
 public class Billet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
+
     @ManyToOne
-    @JoinColumn(name = "evenement_id")
+    @JoinColumn(name = "id_evenement", nullable = false)
     private Evenement evenement;
-    @ManyToOne
-    @JoinColumn(name = "categorie_id")
-    private CategorieBillet categorie;
-    private BigDecimal prix;
-    private String statut;
-    // Getters, setters, constructeurs
+
+    private String typeBillet;
+    private int prix;
+    private int quantiteDisponible;
+    private LocalDate dateDebutVente;
+    private LocalDate dateFinVente;
+    private String description;
+    private String lienQrCode;
+    private String etat;
+
 }
