@@ -2,6 +2,7 @@ package com.kalanso.event.Controller;
 
 import com.kalanso.event.Model.Reservation;
 import com.kalanso.event.Service.Reservation_service;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +14,11 @@ import java.util.List;
 @Controller
 @RestController
 @RequestMapping("/event/Reservation")
+@AllArgsConstructor
 public class ReservationController {
- @Autowired
-    Reservation_service reservationService;
+
+
+    private Reservation_service reservationService;
 
     @GetMapping("/Reserver")
     public String Reserver(Reservation reservation) {
