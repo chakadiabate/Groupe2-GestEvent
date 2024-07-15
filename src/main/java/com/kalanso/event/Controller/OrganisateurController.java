@@ -27,12 +27,12 @@ public class OrganisateurController {
     }
 
     @PutMapping("/ModifierOrganisateur")
-    public Organisateur modifierOrganisateur(@PathVariable Long id,@RequestBody Organisateur organisateur){
+    public Organisateur modifierOrganisateur(@PathVariable int id,@RequestBody Organisateur organisateur){
         return orgaService.modifierOrganisateur(id, organisateur);
     }
 
     @DeleteMapping("/SupprimerOrganisateur")
-    public String supprimerOrganisateur(@PathVariable Long id){
+    public String supprimerOrganisateur(@PathVariable int id){
         return orgaService.supprimerOrganisateur(id);
     }
 

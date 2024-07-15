@@ -2,16 +2,22 @@ package com.kalanso.event.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Table(name = "TYPEROLE")
 @Data
-@Table(name = "categories")
 @NoArgsConstructor
-public class Categorie {
+@Getter
+@Setter
+public class EtatBillet {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    private String nom;
-    // Getters, setters, constructeurs
+    private  long Id;
+
+    private String etatBillet;
+
 }
