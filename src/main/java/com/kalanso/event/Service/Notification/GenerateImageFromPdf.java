@@ -1,4 +1,4 @@
-package com.kalanso.event.Service;
+package com.kalanso.event.Service.Notification;
 
 
 import lombok.AllArgsConstructor;

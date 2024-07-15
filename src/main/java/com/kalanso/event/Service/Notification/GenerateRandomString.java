@@ -1,16 +1,9 @@
-package com.kalanso.event.Service;
+package com.kalanso.event.Service.Notification;
 
 
 import lombok.AllArgsConstructor;
-import org.apache.pdfbox.pdmodel.PDDocument;
-import org.apache.pdfbox.rendering.PDFRenderer;
 import org.springframework.stereotype.Service;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Random;
 

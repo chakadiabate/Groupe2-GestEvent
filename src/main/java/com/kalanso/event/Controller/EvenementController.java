@@ -20,7 +20,7 @@ public class EvenementController {
     private Evenement_service evenementService;
 
     @PostMapping("/addEvent")
-    private Evenement ajout (@RequestBody Evenement evenement){
+    private String ajout (@RequestBody Evenement evenement){
         return evenementService.Ajout(evenement);
     }
 

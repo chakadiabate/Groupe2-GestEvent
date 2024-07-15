@@ -1,9 +1,10 @@
-package com.kalanso.event.Service;
+package com.kalanso.event.Service.Notification;
 
 
 import com.google.zxing.WriterException;
 import com.kalanso.event.Model.Notification;
 import com.kalanso.event.Repository.Notification_repo;
+import com.kalanso.event.Service.QRCodeService;
 import com.lowagie.text.DocumentException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;

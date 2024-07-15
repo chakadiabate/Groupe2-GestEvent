@@ -1,9 +1,10 @@
-package com.kalanso.event.Service;
+package com.kalanso.event.Service.Notification;
 
 
 import com.google.zxing.WriterException;
 import com.kalanso.event.Model.Notification;
 import com.kalanso.event.Repository.Notification_repo;
+import com.kalanso.event.Service.QRCodeService;
 import com.lowagie.text.DocumentException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -19,7 +20,7 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class Notif_service_Evenement_impl implements Notification_service {
+public class Notif_service_compteCrée_impl implements Notification_service {
 
     private Notification_repo notificationRepo;
     private JavaMailSender javaMailSender;
@@ -40,11 +41,12 @@ public class Notif_service_Evenement_impl implements Notification_service {
         "<html>" +
         "<head>" +
             "<style>" +
-                "body {font-family: 'Roboto', sans-serif; background-color: #ffffff; color: #fff; width: 100vw; height: 100vh; display: flex; justify-content: center; align-content: center; align-items: center;}" +
-                ".container { max-width: 600px; margin: auto; padding: 20px; background-color: #1f1f1f; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }" +
+                "body {font-family: 'Roboto', sans-serif; background-color: #ffffff; color: white; width: 100vw; height: 100vh; display: flex; justify-content: center; align-content: center; align-items: center;}" +
+                ".container { max-width: 600px; margin: auto; padding: 20px; background-color: #1f1f1f; color: white; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }" +
                 ".header { background-color: #ff7000; padding: 20px; border-radius: 10px 10px 0 0; text-align: center; }" +
                 ".header h1 { margin: 0; font-size: 24px; }" +
                 ".content { padding: 20px; }" +
+                "@page { size: 300px 100px }" +
                 ".content p { line-height: 1.6; }" +
                 ".footer { text-align: center; color: #888; font-size: 12px; padding: 10px; border-radius: 0 0 10px 10px; background-color: #2c2c2c; }" +
             "</style>" +
@@ -79,15 +81,11 @@ public class Notif_service_Evenement_impl implements Notification_service {
         // Convert PDF to image
         byte[] imageBytes = generateImageFromPdf.generateImageFromPdf(pdfBytes);
 
-        // Add PDF attachment
-        InputStreamSource pdfSource = new ByteArrayResource(pdfBytes);
-        helper.addAttachment("ticket.pdf", pdfSource);
 
         // Add image attachment
         InputStreamSource imageSource = new ByteArrayResource(imageBytes);
         helper.addAttachment("ticket.png", imageSource);
 
-        helper.addAttachment("qrcode.png", qrCodeSource);
 
         javaMailSender.send(message);
         notificationRepo.save(notification);

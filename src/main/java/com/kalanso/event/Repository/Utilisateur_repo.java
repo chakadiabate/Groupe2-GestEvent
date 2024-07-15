@@ -9,5 +9,4 @@ import java.util.List;
 @Repository
 public interface Utilisateur_repo extends JpaRepository<Utilisateur, Integer> {
 
-    List<Utilisateur> findAllById(String id);
 }

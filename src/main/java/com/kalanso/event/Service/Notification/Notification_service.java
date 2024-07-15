@@ -1,4 +1,4 @@
-package com.kalanso.event.Service;
+package com.kalanso.event.Service.Notification;
 
 import com.google.zxing.WriterException;
 import com.kalanso.event.Model.Notification;
