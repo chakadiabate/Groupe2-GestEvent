@@ -29,3 +29,5 @@ public class Reservation {
     private Date date_res;
     private MethodePaiement methodePaiement;
 }
+
+

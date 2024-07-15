@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.management.relation.Role;
+
 @Entity
 @Table(name = "utilisateur")
 @NoArgsConstructor
@@ -18,11 +20,22 @@ import lombok.Setter;
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
     private String nom;
     private String prenom;
+
+    @Column(unique = true)
+    private String Email;
+
+    @Column(unique = true)
+    private Long telephone;
+
+    @Column(unique = true)
     private String motDePasse;
-    private Long tel;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
 
 
 }
