@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("/event/Reservation")
+@RequestMapping("/gestEvent/event/Reservation")
 @AllArgsConstructor
 public class ReservationController {
 

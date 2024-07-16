@@ -23,10 +23,10 @@ public class Utilisateur {
     private String prenom;
 
     @Column(unique = true)
-    private String Email;
+    private String email;
 
     @Column(unique = true)
-    private Long telephone;
+    private String telephone;
 
     //@Column(unique = true)
     private String motDePasse;

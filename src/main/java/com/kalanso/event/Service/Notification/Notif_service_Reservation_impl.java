@@ -4,6 +4,7 @@ package com.kalanso.event.Service.Notification;
 
 import com.kalanso.event.Model.Notification;
 import com.kalanso.event.Repository.Notification_repo;
+import com.kalanso.event.Service.ContexHolder;
 import com.kalanso.event.Service.QRCodeService;
 import com.lowagie.text.DocumentException;
 import jakarta.mail.MessagingException;
@@ -29,6 +30,7 @@ public class Notif_service_Reservation_impl {
     private generatePdfFromHtml generatePdfFromHtml;
     private GenerateImageFromPdf generateImageFromPdf;
     private GenerateRandomString generateRandomString;
+    private ContexHolder contexHolder;
 
     public void sendMailWelcome(Notification notification) throws MessagingException, IOException, DocumentException, WriterException{
 
@@ -49,7 +51,7 @@ public class Notif_service_Reservation_impl {
                 "<body>\n" +
                 "    <div class=\"container\">\n" +
                 "        <div class=\"header\">\n" +
-                "            <h1>Bienvenue à Notre Événement, [Nom]!</h1>\n" +
+                "            <h1>Bienvenue à Notre Événement," + contexHolder.utilisateur().getNom() + "!</h1>\n" +
                 "        </div>\n" +
                 "        <div class=\"content\">\n" +
                 "            <p>Nous sommes ravis de vous inviter à notre événement spécial. Préparez-vous pour une expérience inoubliable avec des sessions interactives, des conférenciers de renommée mondiale, et bien plus encore.</p>\n" +
@@ -62,7 +64,7 @@ public class Notif_service_Reservation_impl {
                 "            <p>Assurez-vous de confirmer votre présence en répondant à cet e-mail. Nous avons hâte de vous voir!</p>\n" +
                 "        </div>\n" +
                 "        <div class=\"footer\">\n" +
-                "            <p>&copy; 2024 Votre Entreprise. Tous droits réservés.</p>\n" +
+                "            <p>&copy; 2024 ODK_P4_GP2. Tous droits réservés.</p>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "</body>\n" +

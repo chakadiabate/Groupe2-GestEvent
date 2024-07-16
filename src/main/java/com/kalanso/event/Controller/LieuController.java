@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/lieux")
+@RequestMapping("/gestEvent/lieu")
 public class LieuController {
 
     @Autowired

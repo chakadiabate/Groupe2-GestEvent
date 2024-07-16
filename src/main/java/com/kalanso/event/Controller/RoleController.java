@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/role")
+@RestController("/gestEvent/role")
 public class RoleController {
 
     Role_Service roleService;
