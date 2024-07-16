@@ -1,6 +1,6 @@
 package com.kalanso.event.Controller;
 
-import com.kalanso.event.Model.Role;
+import com.kalanso.event.Model.RoleUser;
 import com.kalanso.event.Service.Role_Service;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController("/role")
+@RestController("/gestEvent/role")
 public class RoleController {
 
     Role_Service roleService;
 
     @PutMapping("/AjouterRoles")
-    public Role AjouterRole(Role R){
+    public RoleUser AjouterRole(RoleUser R){
         return roleService.AjouterRole(R);
     }
 
     @GetMapping("/listeRole")
-    public List<Role> ListeRole(){
+    public List<RoleUser> ListeRole(){
         return roleService.ListeRole();
     }
 
@@ -29,7 +29,7 @@ public class RoleController {
         return roleService.supprimer(id);
     }
     @PutMapping("/modifCategorie")
-    public Role modifierategorie(Long id, Role R){
+    public RoleUser modifierategorie(Long id, RoleUser R){
         return roleService.ModifierCategorie(id, R);
     }
 

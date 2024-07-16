@@ -2,15 +2,16 @@ package com.kalanso.event.Service;
 
 import com.kalanso.event.Model.CategorieEvent;
 import com.kalanso.event.Repository.CategorieEventRepo;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class CategorieEvent_service {
 
     private CategorieEventRepo categorieEventRepo;
-
 
     public CategorieEvent AjouterCategorie(CategorieEvent Ca){
         return categorieEventRepo.save(Ca);

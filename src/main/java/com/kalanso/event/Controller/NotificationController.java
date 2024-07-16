@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("/notif")
+@RequestMapping("/gestEvent/notif")
 @AllArgsConstructor
 public class NotificationController{
 

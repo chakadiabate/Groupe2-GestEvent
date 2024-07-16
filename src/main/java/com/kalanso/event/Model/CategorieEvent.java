@@ -4,14 +4,19 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(name = "CategorieEvent")
 @Getter
 @Setter
 @NoArgsConstructor
 public class CategorieEvent {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nom;
+
+    @OneToMany(mappedBy = "category")
+    private List<Evenement> evenement;
 }

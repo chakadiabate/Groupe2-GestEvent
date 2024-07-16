@@ -4,6 +4,7 @@ package com.kalanso.event.Service.Notification;
 
 import com.kalanso.event.Model.Notification;
 import com.kalanso.event.Repository.Notification_repo;
+import com.kalanso.event.Service.ContexHolder;
 import com.kalanso.event.Service.QRCodeService;
 import com.lowagie.text.DocumentException;
 import jakarta.mail.MessagingException;
@@ -16,7 +17,8 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.InputStreamSource;
 import com.google.zxing.WriterException;
 import java.io.IOException;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +30,7 @@ public class Notif_service_Reservation_impl {
     private generatePdfFromHtml generatePdfFromHtml;
     private GenerateImageFromPdf generateImageFromPdf;
     private GenerateRandomString generateRandomString;
+    private ContexHolder contexHolder;
 
     public void sendMailWelcome(Notification notification) throws MessagingException, IOException, DocumentException, WriterException{
 
@@ -48,7 +51,7 @@ public class Notif_service_Reservation_impl {
                 "<body>\n" +
                 "    <div class=\"container\">\n" +
                 "        <div class=\"header\">\n" +
-                "            <h1>Bienvenue à Notre Événement, [Nom]!</h1>\n" +
+                "            <h1>Bienvenue à Notre Événement," + contexHolder.utilisateur().getNom() + "!</h1>\n" +
                 "        </div>\n" +
                 "        <div class=\"content\">\n" +
                 "            <p>Nous sommes ravis de vous inviter à notre événement spécial. Préparez-vous pour une expérience inoubliable avec des sessions interactives, des conférenciers de renommée mondiale, et bien plus encore.</p>\n" +
@@ -61,7 +64,7 @@ public class Notif_service_Reservation_impl {
                 "            <p>Assurez-vous de confirmer votre présence en répondant à cet e-mail. Nous avons hâte de vous voir!</p>\n" +
                 "        </div>\n" +
                 "        <div class=\"footer\">\n" +
-                "            <p>&copy; 2024 Votre Entreprise. Tous droits réservés.</p>\n" +
+                "            <p>&copy; 2024 ODK_P4_GP2. Tous droits réservés.</p>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "</body>\n" +
@@ -85,6 +88,9 @@ public class Notif_service_Reservation_impl {
 
         byte[] qrCodeImage = qrCodeService.generateQRCode(qrCodeText, 250, 250);
         InputStreamSource qrCodeSource = new ByteArrayResource(qrCodeImage);
+
+        String qrCodeFileName = "./uploads/qrcode.png"; // Remplacez par le chemin de votre dossier
+        Files.write(Paths.get(qrCodeFileName), qrCodeImage);
 
         String Content_Qrcode = "<!DOCTYPE html>\n" +
                 "<html>\n" +
@@ -152,7 +158,7 @@ public class Notif_service_Reservation_impl {
                 "        <div class=\"ticket-container\">\n" +
                 "            <h2>[Titre Event]</h2>\n" +
                 "            <div class=\"ticket\">\n" +
-                "                <img src='cid:qrcode' alt=\"Code QR du Ticket\"></img>\n" +
+                "                <img src='" + qrCodeFileName + "' alt=\"Code QR du Ticket\"></img>\n" +
                 "                <div class=\"ticket-details\">\n" +
                 "                    <p>Nom : [Nom]</p>\n" +
                 "                    <p>Email : [Email]</p>\n" +

@@ -3,6 +3,8 @@ package com.kalanso.event.Model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Data
 public class Invitation {
@@ -10,14 +12,15 @@ public class Invitation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private  String motif;
+
+    private Date date = new Date();
 
     @ManyToOne
-    @JoinColumn(name = "prestateur-id", nullable=false)
+    @JoinColumn(name = "prestateur_id", nullable=false)
     private Prestateur prestateur;
 
     @ManyToOne
-    @JoinColumn(name = "id_even", nullable=false)
+    @JoinColumn(name = "id_event", nullable=false)
     private Evenement evenement;
 
 }

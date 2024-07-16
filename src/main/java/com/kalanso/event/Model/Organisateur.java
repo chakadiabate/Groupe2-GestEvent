@@ -8,7 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Table(name="ORGANISATEUR")
 @Entity
 public class Organisateur extends Utilisateur{
 

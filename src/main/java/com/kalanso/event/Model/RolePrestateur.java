@@ -11,13 +11,12 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "role")
-public class Role {
+public class RolePrestateur {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
-    private String nom;
+    private String role;
 
     @OneToMany(mappedBy = "role")
-    private List<Utilisateur> utilisateur;
+    private List<Prestateur> prestateur;
 }

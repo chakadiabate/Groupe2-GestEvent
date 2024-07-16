@@ -7,14 +7,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(name = "utilisateur")
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
 @Data
 @Getter
 @Setter
-
 public class Utilisateur {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,17 +23,26 @@ public class Utilisateur {
     private String prenom;
 
     @Column(unique = true)
-    private String Email;
+    private String email;
 
     @Column(unique = true)
-    private Long telephone;
+    private String telephone;
 
-    @Column(unique = true)
+    //@Column(unique = true)
     private String motDePasse;
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-    private Role role;
+    private RoleUser role;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Evenement> evenement;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Reservation> reservation;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private List<Notification> notification;
 
 
 }

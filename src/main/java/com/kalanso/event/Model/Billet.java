@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 @Entity
 @Data
-@Table(name = "billet")
 @NoArgsConstructor
 public class Billet {
 
@@ -26,6 +25,15 @@ public class Billet {
     private LocalDate dateFinVente;
     private String description;
     private String lienQrCode;
-    private String etat;
+
+    @ManyToOne
+    @JoinColumn(name = "Statuts")
+    private StatutBillet status;
+
+    @ManyToOne
+    @JoinColumn(name = "Categories")
+    private CategorieBillet category;
+
+
 
 }

@@ -6,8 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
-@Table(name = "TYPEROLE")
 @Data
 @NoArgsConstructor
 @Getter
@@ -17,6 +18,9 @@ public class StatutReservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long Id;
-    private String statutReservation;
+    private String statut;
+
+    @OneToMany(mappedBy = "statut")
+    private List<Reservation> reservation;
 
 }

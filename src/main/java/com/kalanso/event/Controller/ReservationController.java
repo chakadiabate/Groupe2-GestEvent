@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("/event/Reservation")
+@RequestMapping("/gestEvent/event/Reservation")
 @AllArgsConstructor
 public class ReservationController {
 
@@ -30,8 +30,8 @@ public class ReservationController {
         return reservationService.getAllReservations();
     }
     @GetMapping("/AnnulerReservation")
-    public String CancelReservation(Reservation reservation) {
-        reservationService.AnnulerReservation(reservation);
+    public String CancelReservation(Reservation reservation, String Statut) {
+        reservationService.AnnulerReservation(reservation, Statut);
         return "Reservation annulée avec succès!!!";
     }
 }

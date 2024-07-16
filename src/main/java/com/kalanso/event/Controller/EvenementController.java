@@ -12,7 +12,7 @@ import java.util.List;
 
 @Controller
 @RestController
-@RequestMapping("/event")
+@RequestMapping("/gestEvent/event")
 @AllArgsConstructor
 public class EvenementController {
 

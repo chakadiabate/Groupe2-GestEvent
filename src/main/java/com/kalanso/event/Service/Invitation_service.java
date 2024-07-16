@@ -3,6 +3,7 @@ package com.kalanso.event.Service;
 
 import com.kalanso.event.Model.Invitation;
 import com.kalanso.event.Repository.Invitation_repository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
 public class Invitation_service {
 
-    @Autowired
     private Invitation_repository invitationRepository;
 
     public List<Invitation> findAll() {
