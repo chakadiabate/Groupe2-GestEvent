@@ -4,15 +4,16 @@ import com.kalanso.event.Exception.ResourceNotFoundException;
 import com.kalanso.event.Model.Lieu;
 import com.kalanso.event.Repository.Lieu_repo;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
 @Transactional
+@AllArgsConstructor
 public class Lieu_service {
 
-    @Autowired
     private Lieu_repo lieu_repo;
 
 

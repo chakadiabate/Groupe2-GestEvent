@@ -19,6 +19,9 @@ import com.google.zxing.WriterException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 @Service
 @AllArgsConstructor
@@ -33,6 +36,10 @@ public class Notif_service_Reservation_impl {
     private ContexHolder contexHolder;
 
     public void sendMailWelcome(Notification notification) throws MessagingException, IOException, DocumentException, WriterException{
+
+        LocalDateTime debutEventDateTime = LocalDateTime.ofInstant(notification.getEvenement().getDatedebut().toInstant(), ZoneId.systemDefault());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss"); // Définir le format souhaité ici
+        String heureFormatee = debutEventDateTime.format(formatter);
 
         String content ="<!DOCTYPE html>\n" +
                 "<html>\n" +
@@ -57,9 +64,9 @@ public class Notif_service_Reservation_impl {
                 "            <p>Nous sommes ravis de vous inviter à notre événement spécial. Préparez-vous pour une expérience inoubliable avec des sessions interactives, des conférenciers de renommée mondiale, et bien plus encore.</p>\n" +
                 "            <p>Voici les détails de l'événement :</p>\n" +
                 "            <ul>\n" +
-                "                <li>Date : 25 juillet 2024</li>\n" +
-                "                <li>Lieu : Centre de Conférences Futuriste, Ville</li>\n" +
-                "                <li>Heure : 10h00 - 18h00</li>\n" +
+                "                <li>Date : " + notification.getEvenement().getDatedebut() + "</li>\n" +
+                "                <li>Lieu : Stade du 26 Mars</li>\n" +
+                "                <li>Heure : "+ heureFormatee + "</li>\n" +
                 "            </ul>\n" +
                 "            <p>Assurez-vous de confirmer votre présence en répondant à cet e-mail. Nous avons hâte de vous voir!</p>\n" +
                 "        </div>\n" +
@@ -89,8 +96,8 @@ public class Notif_service_Reservation_impl {
         byte[] qrCodeImage = qrCodeService.generateQRCode(qrCodeText, 250, 250);
         InputStreamSource qrCodeSource = new ByteArrayResource(qrCodeImage);
 
-        String qrCodeFileName = "./uploads/qrcode.png"; // Remplacez par le chemin de votre dossier
-        Files.write(Paths.get(qrCodeFileName), qrCodeImage);
+        //String qrCodeFileName = "./uploads/qrcode.png"; // Remplacez par le chemin de votre dossier
+        //Files.write(Paths.get(qrCodeFileName), qrCodeImage);
 
         String Content_Qrcode = "<!DOCTYPE html>\n" +
                 "<html>\n" +
@@ -156,19 +163,19 @@ public class Notif_service_Reservation_impl {
                 "<body>\n" +
                 "    <div class=\"container\">\n" +
                 "        <div class=\"ticket-container\">\n" +
-                "            <h2>[Titre Event]</h2>\n" +
+                "            <h2>"+ notification.getEvenement().getNom() + "</h2>\n" +
                 "            <div class=\"ticket\">\n" +
-                "                <img src='" + qrCodeFileName + "' alt=\"Code QR du Ticket\"></img>\n" +
+                "                <img src='cid:qrcode' alt=\"Code QR du Ticket\"></img>\n" +
                 "                <div class=\"ticket-details\">\n" +
-                "                    <p>Nom : [Nom]</p>\n" +
-                "                    <p>Email : [Email]</p>\n" +
-                "                    <p>Date : [Date]</p>\n" +
+                "                    <p>Nom : "+ contexHolder.utilisateur().getNom() + "</p>\n" +
+                "                    <p>Email : "+ contexHolder.utilisateur().getEmail() + "</p>\n" +
+                "                    <p>Date : " + notification.getEvenement().getDate() + "</p>\n" +
                 "                    <p>Numéro de Ticket : 123456789</p>\n" +
                 "                </div>\n" +
                 "            </div>\n" +
                 "        </div>\n" +
                 "        <div class=\"footer\">\n" +
-                "            <p>&copy; 2024 Votre Entreprise. Tous droits réservés.</p>\n" +
+                "            <p>&copy; 2024 ODK_P4_GP2. Tous droits réservés.</p>\n" +
                 "        </div>\n" +
                 "    </div>\n" +
                 "</body>\n" +

@@ -13,9 +13,9 @@ public class TypeEvent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nom;
+    private String type;
 
-    @OneToMany(mappedBy = "typeEvent")
+    @OneToMany(mappedBy = "typeevent")
     private List<Evenement> evenement;
 
     // Getters, setters, constructeurs

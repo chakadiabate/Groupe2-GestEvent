@@ -19,7 +19,7 @@ public class StatutBillet {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long Id;
 
-    private String etatBillet;
+    private String statut;
 
     @OneToMany(mappedBy = "status")
     private List<Billet> billet;

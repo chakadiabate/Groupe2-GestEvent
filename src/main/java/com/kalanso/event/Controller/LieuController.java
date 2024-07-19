@@ -1,7 +1,8 @@
-package com.kalanso.event.controller;
+package com.kalanso.event.Controller;
 
 import com.kalanso.event.Model.Lieu;
 import com.kalanso.event.Service.Lieu_service;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +11,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/gestEvent/lieu")
+@AllArgsConstructor
 public class LieuController {
 
-    @Autowired
     private Lieu_service lieu_service;
 
     @PostMapping

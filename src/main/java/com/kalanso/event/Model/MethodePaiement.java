@@ -18,7 +18,7 @@ public class MethodePaiement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long Id;
-    private String methodePaiement;
+    private String methodepaie;
 
     @OneToMany(mappedBy = "methodePaiement")
     private List<Reservation> reservation;
