@@ -23,10 +23,8 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
-    private Date date_res;
+
+    private Date date_res = new Date();
 
     @ManyToOne
     @JoinColumn(name = "methodePaiement_id")
@@ -35,6 +33,10 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "utilisateur_id")
     private Utilisateur utilisateur;
+
+    @ManyToOne
+    @JoinColumn(name = "categories")
+    private CategorieBillet category;
 }
 
 

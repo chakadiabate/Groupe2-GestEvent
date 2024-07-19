@@ -18,7 +18,7 @@ public class StatutEnvoi {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long Id;
-    private String statutEnvoi;
+    private String statut;
 
     @OneToMany(mappedBy = "status")
     private List<Notification> notification;

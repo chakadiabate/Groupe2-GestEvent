@@ -1,4 +1,4 @@
-/*package com.kalanso.event.Model;
+package com.kalanso.event.Model;/*package com.kalanso.event.Model;
 
 import jakarta.persistence.*;
 import lombok.Data;

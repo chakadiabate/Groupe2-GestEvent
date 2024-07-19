@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -15,16 +15,18 @@ public class Evenement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nom;
-    private LocalDate date;
+    private Date date = new Date();
+    private Date datedebut ;
+    private Date datefin ;
     private String description;
     private Integer nombrePlace;
 
     @ManyToOne
     @JoinColumn(name = "typeEvent_id")
-    private TypeEvent typeEvent;
+    private TypeEvent typeevent;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "users_id")
     private Utilisateur utilisateur;
 
     @ManyToOne
@@ -36,6 +38,9 @@ public class Evenement {
 
     @OneToMany(mappedBy = "evenement")
     private List<Derouler> derouler;
+
+    @OneToMany(mappedBy = "evenement")
+    private List<Reservation> reservation;
 
     // Getters, setters, constructeurs
 }

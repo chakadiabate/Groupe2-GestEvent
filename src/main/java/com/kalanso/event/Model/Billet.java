@@ -15,8 +15,8 @@ public class Billet {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "id_evenement", nullable = false)
-    private Evenement evenement;
+    @JoinColumn(name = "id_reservation", nullable = false)
+    private Reservation reservation;
 
     private String typeBillet;
     private int prix;
@@ -25,14 +25,12 @@ public class Billet {
     private LocalDate dateFinVente;
     private String description;
     private String lienQrCode;
+    private String categoryBillet;
+
 
     @ManyToOne
     @JoinColumn(name = "Statuts")
     private StatutBillet status;
-
-    @ManyToOne
-    @JoinColumn(name = "Categories")
-    private CategorieBillet category;
 
 
 

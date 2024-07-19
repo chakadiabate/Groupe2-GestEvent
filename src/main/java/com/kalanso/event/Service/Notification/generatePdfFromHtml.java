@@ -14,7 +14,7 @@ public class generatePdfFromHtml {
 
     byte[] generatePdfFromHtml(String html) throws IOException, DocumentException {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ITextRenderer renderer = new org.xhtmlrenderer.pdf.ITextRenderer();
+        ITextRenderer renderer = new ITextRenderer();
         renderer.setDocumentFromString(html);
         renderer.layout();
         renderer.createPDF(outputStream);

@@ -29,7 +29,7 @@ public class CategorieEvent_service {
     public CategorieEvent ModifierCategorie(long id, CategorieEvent Categorie){
         return categorieEventRepo.findById(id)
                 .map(Cat->{
-                    Cat.setNom(Categorie.getNom());
+                    Cat.setCategory(Categorie.getCategory());
                     return categorieEventRepo.save(Cat);
                 }).orElseThrow(()-> new RuntimeException("Categorie non trouvée"));
     }

@@ -5,9 +5,7 @@ import com.kalanso.event.Service.Reservation_service;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +18,8 @@ public class ReservationController {
 
     private Reservation_service reservationService;
 
-    @GetMapping("/Reserver")
-    public String Reserver(Reservation reservation) {
+    @PostMapping("/Reserver")
+    public String Reserver(@RequestBody Reservation reservation) {
         reservationService.Reserver(reservation);
         return "Reservation Effectué avec succès !!!";
     }
@@ -29,6 +27,7 @@ public class ReservationController {
     public List<Reservation> getAllReservations() {
         return reservationService.getAllReservations();
     }
+
     @GetMapping("/AnnulerReservation")
     public String CancelReservation(Reservation reservation, String Statut) {
         reservationService.AnnulerReservation(reservation, Statut);

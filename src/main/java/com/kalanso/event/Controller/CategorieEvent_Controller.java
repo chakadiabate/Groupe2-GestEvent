@@ -26,6 +26,7 @@ public class CategorieEvent_Controller {
     public String SupEventCat(Long id){
         return categorieEventService.supprimer(id);
     }
+
     @PutMapping("/modifEventCat")
     public CategorieEvent modifierEventCat(Long id, CategorieEvent Cat){
         return categorieEventService.ModifierCategorie(id, Cat);

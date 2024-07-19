@@ -13,10 +13,10 @@ public class CategorieBillet {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String nom;
+    private String category;
 
     @OneToMany(mappedBy = "category")
-    private List<Billet> billet;
+    private List<Reservation> reservation;
     //private String description;
     // Getters, setters, constructeurs
 }

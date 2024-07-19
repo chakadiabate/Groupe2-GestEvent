@@ -30,7 +30,12 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((registry)->{
-                    registry.requestMatchers("/gestEvent").permitAll();
+                    registry
+                            .requestMatchers("/gestEvent/**").permitAll()
+                            .anyRequest().authenticated();
+
+
+                    ;
                 })
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)

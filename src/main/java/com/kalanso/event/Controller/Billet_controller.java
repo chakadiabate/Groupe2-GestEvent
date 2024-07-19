@@ -2,6 +2,7 @@ package com.kalanso.event.Controller;
 
 import com.kalanso.event.Model.Billet;
 import com.kalanso.event.Service.Billet_service;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,14 +12,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/gestEvent/billets")
+@AllArgsConstructor
 public class Billet_controller {
 
-    private final Billet_service billetService;
+    private Billet_service billetService;
 
-    @Autowired
-    public Billet_controller(Billet_service billetService) {
-        this.billetService = billetService;
-    }
 
     @GetMapping
     public List<Billet> getAllBillets() {
