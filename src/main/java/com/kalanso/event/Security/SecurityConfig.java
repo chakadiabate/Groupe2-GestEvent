@@ -32,6 +32,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests((registry)->{
                     registry
                             .requestMatchers("/gestEvent/**").permitAll()
+                            .requestMatchers("/gestEvent/role/**").permitAll()
                             .anyRequest().authenticated();
 
 
