@@ -2,17 +2,17 @@ package com.kalanso.event.Controller;
 
 import com.kalanso.event.Model.RoleUser;
 import com.kalanso.event.Service.Role_Service;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/gestEvent/role")
+@RestController
+@RequestMapping("/gestEvent/role")
+@AllArgsConstructor
 public class RoleController {
 
-    Role_Service roleService;
+    private Role_Service roleService;
 
     @PutMapping("/AjouterRoles")
     public RoleUser AjouterRole(RoleUser R){

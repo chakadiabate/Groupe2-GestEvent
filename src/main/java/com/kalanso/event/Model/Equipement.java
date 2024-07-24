@@ -18,6 +18,7 @@ public class Equipement {
     private Integer id;
 
     private String name;
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "prestateur_id")
