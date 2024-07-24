@@ -32,7 +32,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests((registry)->{
                     registry
                             .requestMatchers("/gestEvent/**").permitAll()
-                            /*.anyRequest().authenticated()*/;
+
+                            .requestMatchers("/gestEvent/role/**").permitAll()
+                            .anyRequest().authenticated();
+
+                  
 
 
                     ;
