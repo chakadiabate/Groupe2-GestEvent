@@ -18,6 +18,7 @@ public class Prestateur {
     private String nom;
     private String email;
     private Integer tel;
+    private Integer email;
 
     @OneToMany(mappedBy = "prestateur")
     private List<Equipement> equipement;
