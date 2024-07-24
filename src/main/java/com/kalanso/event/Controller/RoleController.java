@@ -15,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RoleController {
 
-    private final Role_Service roleService;
+    private  Role_Service roleService;
 
     @PostMapping("/AjouterRoles")
     public RoleUser AjouterRole(@RequestBody RoleUser role) {
@@ -26,6 +26,8 @@ public class RoleController {
     public List<RoleUser> ListeRole() {
         return roleService.ListeRole();
     }
+
+
 
     @DeleteMapping("/supCathegorie/{id}")
     public String SupCategorie(@PathVariable Long id) {
