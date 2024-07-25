@@ -1,47 +1,36 @@
 package com.kalanso.event.Service;
 
-
 import com.kalanso.event.Model.RoleUser;
 import com.kalanso.event.Repository.RoleUserRepo;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 @Service
-@AllArgsConstructor
 public class Role_Service {
-    private  RoleUserRepo roleUserRepo;
+    private RoleUserRepo roleUserRepo;
 
-    // Ajouter un nouveau rôle
-    public RoleUser AjouterRole(RoleUser role) {
-        return roleUserRepo.save(role);
+    public RoleUser AjouterRole(RoleUser Ro){
+        return roleUserRepo.save(Ro);
     }
 
-    // Obtenir la liste de tous les rôles
-    public List<RoleUser> ListeRole() {
+    public List<RoleUser> ListeRole(){
         return roleUserRepo.findAll();
     }
 
-    // Supprimer un rôle par son ID
-    public String supprimer(Long id) {
-        Optional<RoleUser> roleOptional = roleUserRepo.findById(id);
-        if (roleOptional.isPresent()) {
-            roleUserRepo.deleteById(id);
-            return "Role supprimé avec succès";
-        } else {
-            return "Role non trouvé";
-        }
+    public String supprimer(long id){
+        roleUserRepo.deleteById(id);
+        return "Role supprimer avec succès";
     }
 
-    // Modifier un rôle existant
-    public RoleUser ModifierCategorie(Long id, RoleUser role) {
-        if (roleUserRepo.existsById(id)) {
-            role.setId(id);
-            return roleUserRepo.save(role);
-        } else {
-            throw new RuntimeException("Role non trouvé avec l'ID: " + id);
-        }
+    public RoleUser ModifierCategorie(long id, RoleUser roleUser){
+        return roleUserRepo.findById(id)
+                .map(R->{
+                    R.setRole(roleUser.getRole());
+                    return roleUserRepo.save(R);
+                }).orElseThrow(()-> new RuntimeException("Role non trouvée"));
     }
+
+
 }

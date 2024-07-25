@@ -17,11 +17,7 @@ public class Equipement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-
-
-    private String nom;
-    private String description;
-
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "prestateur_id")

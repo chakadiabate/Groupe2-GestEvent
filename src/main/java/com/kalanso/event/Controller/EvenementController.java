@@ -35,7 +35,7 @@ public class EvenementController {
     }
 
     @PutMapping("/update")
-    public Evenement update(Evenement evenement) {
-        return evenementService.update(evenement);
+    public Evenement update(@PathVariable Integer id, @RequestBody Evenement evenement ) {
+        return evenementService.update(id, evenement);
     }
 }

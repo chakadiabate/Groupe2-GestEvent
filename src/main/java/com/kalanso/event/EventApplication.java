@@ -11,7 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
-@SpringBootApplication (exclude = { SecurityAutoConfiguration.class , })
+@SpringBootApplication //(exclude = { SecurityAutoConfiguration.class , })
 public class EventApplication {
 
 	public static void main(String[] args) {
