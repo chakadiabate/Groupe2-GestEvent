@@ -12,6 +12,7 @@ import com.kalanso.event.Service.Notification.*;
 import com.lowagie.text.DocumentException;
 import jakarta.mail.MessagingException;
 import lombok.AllArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -56,16 +57,27 @@ public class Event_service_impl implements Evenement_service {
 
     @Override
     public List<Evenement> Afficher(Evenement evenement) {
-        return List.of();
+        return evenement_repo.findAll();
     }
 
     @Override
     public String Delete(Evenement evenement) {
-        return "";
+        evenement_repo.delete(evenement);
+        return "Event deleted with succes";
     }
 
     @Override
-    public Evenement update(Evenement evenement) {
-        return null;
+    public Evenement update(Integer id, Evenement evenement) {
+        return evenement_repo.findById(id)
+                .map(p->{
+                    p.setNom(evenement.getNom());
+                    p.setDescription(evenement.getDescription());
+                    p.setCategory(evenement.getCategory());
+                    p.setDatedebut(evenement.getDatedebut());
+                    p.setDatefin(evenement.getDatefin());
+                    p.setDerouler(evenement.getDerouler());
+                    p.setNombrePlace(evenement.getNombrePlace());
+                    return evenement_repo.save(p);
+                }).orElseThrow(()-> new RuntimeException("The event couldn't be deleted "));
     }
 }

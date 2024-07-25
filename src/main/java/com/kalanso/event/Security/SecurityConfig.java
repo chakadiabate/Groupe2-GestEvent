@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
@@ -32,13 +33,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests((registry)->{
                     registry
                             .requestMatchers("/gestEvent/**").permitAll()
-                            /*.anyRequest().authenticated()*/;
+                            .anyRequest().authenticated();
 
 
                     ;
                 })
                 .httpBasic(AbstractHttpConfigurer::disable)
-                .formLogin(AbstractAuthenticationFilterConfigurer::disable)
+                .formLogin(login ->
+                        login.usernameParameter("email")
+                                .permitAll()
+                )
                 .build();
     }
 
@@ -55,4 +59,19 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+/*    @Bean
+    public AuthenticationManagerBuilder configurebuilder(AuthenticationManagerBuilder auth) throws Exception {
+        return auth.authenticationProvider(authenticationProvider());
+    }
+
+    @Bean
+    public HttpSecurity configurebuilders(HttpSecurity http) throws Exception {
+      return   http.authorizeRequests()
+                .anyRequest().permitAll()
+                .and()
+                .formLogin(login ->
+                        login.usernameParameter("email")
+                                .permitAll()
+                );
+    }*/
 }

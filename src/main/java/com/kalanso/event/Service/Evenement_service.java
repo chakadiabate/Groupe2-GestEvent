@@ -16,5 +16,5 @@ public interface Evenement_service{
     String Delete(Evenement evenement);
 
     //Methode pour mettre à jour un evenement
-    Evenement update(Evenement evenement);
+    Evenement update(Integer id, Evenement evenement);
 }
