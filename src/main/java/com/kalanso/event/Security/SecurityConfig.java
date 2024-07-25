@@ -34,9 +34,6 @@ public class SecurityConfig {
                     registry
                             .requestMatchers("/gestEvent/**").permitAll()
                             .anyRequest().authenticated();
-
-
-                    ;
                 })
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(login ->
