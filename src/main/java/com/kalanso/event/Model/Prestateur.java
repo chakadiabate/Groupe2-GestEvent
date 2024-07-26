@@ -18,7 +18,6 @@ public class Prestateur {
     private String nom;
     private String email;
     private Integer tel;
-    private String profile;
 
     @OneToMany(mappedBy = "prestateur")
     private List<Equipement> equipement;
