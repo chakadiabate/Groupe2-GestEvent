@@ -18,6 +18,7 @@ public class Equipement {
     private Integer id;
 
 
+
     private String nom;
     private String description;
 
