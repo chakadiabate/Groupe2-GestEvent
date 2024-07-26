@@ -47,6 +47,12 @@ public class UtilisateurController {
         return utilisateurService.display(id);
     }
 
+    @GetMapping("/TriParNom")
+    List<Utilisateur> TrierByname(String nom){
+        return utilisateurService.listeParNom(nom);
+    }
+
+
     @PutMapping("/UpdateUser/{id}")
     public Utilisateur UpdateUser(@PathVariable Integer id, @RequestBody Utilisateur utilisateur){
         return utilisateurService.update(id, utilisateur);
