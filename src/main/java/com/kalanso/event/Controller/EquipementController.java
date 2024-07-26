@@ -38,7 +38,7 @@ public class EquipementController {
 
         if (equipement.isPresent()) {
             Equipement equipementToUpdate = equipement.get();
-            equipementToUpdate.setName(equipementDetails.getName());
+            equipementToUpdate.setNom(equipementDetails.getNom());
             equipementToUpdate.setDescription(equipementDetails.getDescription());
             return ResponseEntity.ok(equipementService.save(equipementToUpdate));
         } else {
