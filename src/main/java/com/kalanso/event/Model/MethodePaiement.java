@@ -1,5 +1,6 @@
 package com.kalanso.event.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -19,7 +20,7 @@ public class MethodePaiement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long Id;
     private String methodepaie;
-
+    @JsonBackReference(value = "users")
     @OneToMany(mappedBy = "methodePaiement")
     private List<Reservation> reservation;
 

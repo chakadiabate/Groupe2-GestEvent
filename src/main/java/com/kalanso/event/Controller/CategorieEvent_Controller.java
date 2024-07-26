@@ -5,7 +5,7 @@ import com.kalanso.event.Service.CategorieEvent_service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins="*")
 @RequestMapping("/gestEvent/EventCat")
 @RestController
 public class CategorieEvent_Controller {
