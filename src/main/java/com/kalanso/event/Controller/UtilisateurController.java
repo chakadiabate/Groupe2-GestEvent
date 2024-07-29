@@ -23,7 +23,7 @@ public class UtilisateurController {
     }
 
     @PostMapping("/CreerGest")
-    public Gestionnaire CreerAdmin(@RequestBody Gestionnaire gestionnaire){
+    public Gestionnaire Creergest(@RequestBody Gestionnaire gestionnaire){
         return utilisateurService.CreerGestionnaire(gestionnaire);
     }
 

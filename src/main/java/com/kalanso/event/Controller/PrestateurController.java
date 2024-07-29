@@ -2,23 +2,29 @@ package com.kalanso.event.Controller;
 
 import com.kalanso.event.Model.Prestateur;
 import com.kalanso.event.Service.PrestateurService;
+import com.kalanso.event.Service.Utilisateur_service;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+
 @CrossOrigin(origins="*")
 @RestController
-@RequestMapping("/api/prestateurs")
+@RequestMapping("/gestEvent/prestateurs")
+
 public class PrestateurController {
 
     @Autowired
     private PrestateurService prestateurService;
+    private Utilisateur_service utilisateurService;
 
     @GetMapping
-    public List<Prestateur> getAllPrestateurs() {
-        return prestateurService.findAll();
+    public ResponseEntity<List<Prestateur>> getAllPrestateurs() {
+        List<Prestateur> prestateurs = prestateurService.findAll();
+        return ResponseEntity.ok(prestateurs);
     }
 
     @GetMapping("/{id}")
@@ -28,8 +34,9 @@ public class PrestateurController {
     }
 
     @PostMapping
-    public Prestateur createPrestateur(@RequestBody Prestateur prestateur) {
-        return prestateurService.save(prestateur);
+    public ResponseEntity<Prestateur> createPrestateur( @RequestBody Prestateur prestateur) {
+        Prestateur savedPrestateur = prestateurService.save(prestateur);
+        return ResponseEntity.status(HttpStatus.CREATED).body(savedPrestateur);
     }
 
     @PutMapping("/{id}")
@@ -40,8 +47,11 @@ public class PrestateurController {
             Prestateur prestateurToUpdate = prestateur.get();
             prestateurToUpdate.setNom(prestateurDetails.getNom());
             prestateurToUpdate.setEmail(prestateurDetails.getEmail());
+            prestateurToUpdate.setProfile(prestateurDetails.getProfile());
+            prestateurToUpdate.setTelephone(prestateurDetails.getTelephone());
             // Mettre à jour d'autres champs si nécessaire
-            return ResponseEntity.ok(prestateurService.save(prestateurToUpdate));
+            Prestateur updatedPrestateur = prestateurService.save(prestateurToUpdate);
+            return ResponseEntity.ok(updatedPrestateur);
         } else {
             return ResponseEntity.notFound().build();
         }

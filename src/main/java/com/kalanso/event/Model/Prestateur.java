@@ -1,5 +1,7 @@
 package com.kalanso.event.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,16 +19,13 @@ public class Prestateur {
 
     private String nom;
     private String email;
-    private Integer tel;
-
-    @OneToMany(mappedBy = "prestateur")
-    private List<Equipement> equipement;
+    private String telephone; // Changed from Integer to String for better handling of phone numbers
+    private String profile;
+    // Changed name to plural
 
     @ManyToOne
     @JoinColumn(name = "gestionnaire_id")
+    //@JsonManagedReference("gestionnaire")
     private Gestionnaire gestionnaire;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private RolePrestateur role;
 }

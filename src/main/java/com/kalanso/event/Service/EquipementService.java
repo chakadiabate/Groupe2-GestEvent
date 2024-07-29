@@ -1,7 +1,9 @@
 package com.kalanso.event.Service;
 
 import com.kalanso.event.Model.Equipement;
+import com.kalanso.event.Model.Prestateur;
 import com.kalanso.event.Repository.EquipementRepository;
+import com.kalanso.event.Repository.PrestateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,9 @@ public class EquipementService {
 
     @Autowired
     private EquipementRepository equipementRepository;
+
+    @Autowired
+    private PrestateurRepository prestateurRepository;
 
     public List<Equipement> findAll() {
         return equipementRepository.findAll();
@@ -30,4 +35,3 @@ public class EquipementService {
         equipementRepository.deleteById(id);
     }
 }
-

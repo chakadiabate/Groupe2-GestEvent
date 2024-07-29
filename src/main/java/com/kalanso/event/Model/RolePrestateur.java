@@ -17,7 +17,5 @@ public class RolePrestateur {
     @Id
     private Long id;
     private String role;
-    @JsonBackReference(value = "users")
-    @OneToMany(mappedBy = "role")
-    private List<Prestateur> prestateur;
+
 }
