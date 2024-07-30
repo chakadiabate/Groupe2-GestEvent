@@ -35,11 +35,8 @@ public class SecurityConfig {
                             .requestMatchers("/gestEvent/**").permitAll()
                             .anyRequest().authenticated();
                 })
-                .httpBasic(AbstractHttpConfigurer::disable)
-                .formLogin(login ->
-                        login.usernameParameter("email")
-                                .permitAll()
-                )
+                .httpBasic(Customizer.withDefaults())
+                .formLogin(AbstractAuthenticationFilterConfigurer::permitAll)
                 .build();
     }
 
