@@ -1,5 +1,8 @@
 package com.kalanso.event.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,23 +26,28 @@ public class Evenement {
 
     @ManyToOne
     @JoinColumn(name = "typeEvent_id")
+    @JsonIgnoreProperties("evenement")
     private TypeEvent typeevent;
 
     @ManyToOne
     @JoinColumn(name = "users_id")
+    @JsonIgnoreProperties("evenement")
     private Utilisateur utilisateur;
 
     @ManyToOne
     @JoinColumn(name = "categories")
+    @JsonIgnoreProperties("evenement")
     private CategorieEvent category;
 
     @OneToMany(mappedBy = "evenement")
+    @JsonIgnoreProperties("evenement")
     private List<Notification> notification;
 
     @OneToMany(mappedBy = "evenement")
     private List<Derouler> derouler;
 
     @OneToMany(mappedBy = "evenement")
+    @JsonIgnoreProperties("evenement")
     private List<Reservation> reservation;
 
     // Getters, setters, constructeurs

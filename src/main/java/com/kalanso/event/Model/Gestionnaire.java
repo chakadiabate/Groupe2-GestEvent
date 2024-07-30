@@ -15,6 +15,5 @@ import java.util.List;
 @Setter
 public class Gestionnaire extends Utilisateur{
 
-    @OneToMany(mappedBy = "gestionnaire")
-    private List<Prestateur> prestateur;
+
 }

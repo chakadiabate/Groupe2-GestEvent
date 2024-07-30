@@ -30,7 +30,7 @@ public class Billet_controller {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("AjoutBillet")
     public ResponseEntity<Billet> createBillet(@RequestBody Billet billet) {
         Billet createdBillet = billetService.createBillet(billet);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdBillet);

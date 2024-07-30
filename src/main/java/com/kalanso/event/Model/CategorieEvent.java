@@ -17,7 +17,6 @@ public class CategorieEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String category;
-    @JsonBackReference(value = "users")
     @OneToMany(mappedBy = "category")
     private List<Evenement> evenement;
 }

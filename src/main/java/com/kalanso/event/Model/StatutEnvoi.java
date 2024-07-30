@@ -20,7 +20,6 @@ public class StatutEnvoi {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private  long Id;
     private String statut;
-    @JsonBackReference(value = "users")
     @OneToMany(mappedBy = "status")
     private List<Notification> notification;
 

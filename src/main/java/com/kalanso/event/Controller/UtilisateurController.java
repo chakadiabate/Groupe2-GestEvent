@@ -3,18 +3,18 @@ package com.kalanso.event.Controller;
 import com.kalanso.event.Model.*;
 import com.kalanso.event.Service.Utilisateur_service;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @CrossOrigin(origins="*")
-@Controller
 @RestController
 @RequestMapping("gestEvent/user")
 @AllArgsConstructor
 public class UtilisateurController {
-
+   @Autowired
     private Utilisateur_service utilisateurService;
 
     @PostMapping("/CreerAdmin")
@@ -23,7 +23,7 @@ public class UtilisateurController {
     }
 
     @PostMapping("/CreerGest")
-    public Gestionnaire CreerAdmin(@RequestBody Gestionnaire gestionnaire){
+    public Gestionnaire CreerGest(@RequestBody Gestionnaire gestionnaire){
         return utilisateurService.CreerGestionnaire(gestionnaire);
     }
 
@@ -42,8 +42,8 @@ public class UtilisateurController {
         return utilisateurService.displayAll();
     }
 
-    @GetMapping("/User")
-    Utilisateur displayUser(Integer id){
+    @GetMapping("/User/{id}")
+    Utilisateur displayUser(@PathVariable Integer id){
         return utilisateurService.display(id);
     }
 

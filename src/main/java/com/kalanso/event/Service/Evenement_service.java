@@ -10,11 +10,11 @@ public interface Evenement_service{
     String Ajout(Evenement evenement);
 
     //Methode pour afficher un evenement
-    List<Evenement> Afficher(Evenement evenement);
+    List<Evenement> Afficher();
 
     //Methode pour supprimer un evenement
-    String Delete(Evenement evenement);
+    String Delete(Integer id);
 
     //Methode pour mettre à jour un evenement
-    Evenement update(Evenement evenement);
+    Evenement update(Integer id,Evenement evenement);
 }

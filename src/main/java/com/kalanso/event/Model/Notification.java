@@ -1,5 +1,6 @@
 package com.kalanso.event.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,7 @@ public class Notification {
 
     @ManyToOne
     @JoinColumn(name = "evenement_id")
+    @JsonIgnoreProperties("evenement")
     private Evenement evenement;
 
     private String sujet;

@@ -18,9 +18,8 @@ public class PriorityTask {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  long Id;
+    private  Long Id;
     private String priority;
-    @JsonBackReference(value = "users")
     @OneToMany(mappedBy = "priority")
     private List<Taches> tache;
 

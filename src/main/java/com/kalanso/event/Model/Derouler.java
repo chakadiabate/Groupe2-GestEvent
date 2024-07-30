@@ -14,19 +14,18 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Table(name = "derouler")
 public class Derouler {
-
-
-    private Date date = new Date();
-
     @Id
+    private Long id;
     @ManyToOne
     @JoinColumn(name = "lieu_id")
     private Lieu lieu;
 
-    @Id
     @ManyToOne
     @JoinColumn(name = "evenement_id")
     private Evenement evenement;
+
+
 
 }
