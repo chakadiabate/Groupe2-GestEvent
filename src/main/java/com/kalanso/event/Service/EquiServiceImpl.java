@@ -27,7 +27,9 @@ public class EquiServiceImpl implements EquiService{
     public Equipement ModifierEqui(Integer id, Equipement equipement) {
         return equiRepository.findById(id)
                 .map(p->{
+
                     p.setNom(equipement.getNom());
+
                     return equiRepository.save(p);
                 }).orElseThrow(()->new RuntimeException("Erreur de jour de l'equipement"));
     }

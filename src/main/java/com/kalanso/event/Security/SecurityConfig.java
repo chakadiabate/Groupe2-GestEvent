@@ -24,11 +24,13 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
+
                 .authorizeHttpRequests(registry ->
                         registry
                                 .requestMatchers("/gestEvent/prestateurs/**").permitAll()
                                 .anyRequest().permitAll()
                 )
+
                 .build();
     }
 

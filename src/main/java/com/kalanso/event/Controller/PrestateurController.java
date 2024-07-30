@@ -48,7 +48,9 @@ public class PrestateurController {
             prestateurToUpdate.setNom(prestateurDetails.getNom());
             prestateurToUpdate.setEmail(prestateurDetails.getEmail());
             prestateurToUpdate.setProfile(prestateurDetails.getProfile());
+
             prestateurToUpdate.setTelephone(prestateurDetails.getTelephone());
+
             // Mettre à jour d'autres champs si nécessaire
             Prestateur updatedPrestateur = prestateurService.save(prestateurToUpdate);
             return ResponseEntity.ok(updatedPrestateur);

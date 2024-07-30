@@ -19,9 +19,11 @@ public class Prestateur {
 
     private String nom;
     private String email;
+
     private String telephone; // Changed from Integer to String for better handling of phone numbers
     private String profile;
     // Changed name to plural
+
 
     @ManyToOne
     @JoinColumn(name = "gestionnaire_id")
