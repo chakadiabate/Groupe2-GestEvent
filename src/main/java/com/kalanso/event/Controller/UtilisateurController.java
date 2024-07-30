@@ -23,7 +23,7 @@ public class UtilisateurController {
     }
 
     @PostMapping("/CreerGest")
-    public Gestionnaire CreerAdmin(@RequestBody Gestionnaire gestionnaire){
+    public Gestionnaire Creergest(@RequestBody Gestionnaire gestionnaire){
         return utilisateurService.CreerGestionnaire(gestionnaire);
     }
 
@@ -46,6 +46,12 @@ public class UtilisateurController {
     Utilisateur displayUser(Integer id){
         return utilisateurService.display(id);
     }
+
+    @GetMapping("/TriParNom")
+    List<Utilisateur> TrierByname(String nom){
+        return utilisateurService.listeParNom(nom);
+    }
+
 
     @PutMapping("/UpdateUser/{id}")
     public Utilisateur UpdateUser(@PathVariable Integer id, @RequestBody Utilisateur utilisateur){

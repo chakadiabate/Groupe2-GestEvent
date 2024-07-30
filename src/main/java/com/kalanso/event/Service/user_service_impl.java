@@ -69,4 +69,9 @@ public class user_service_impl implements Utilisateur_service {
         utilisateurRepo.deleteById(id);
         return "Utilisateur éffacé avec succès";
     }
+
+    @Override
+    public List<Utilisateur> listeParNom(String nom) {
+        return utilisateurRepo.findByNom(nom);
+    }
 }

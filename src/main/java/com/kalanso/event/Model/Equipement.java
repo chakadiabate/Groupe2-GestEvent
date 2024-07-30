@@ -1,11 +1,11 @@
 package com.kalanso.event.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -18,12 +18,6 @@ public class Equipement {
     private Integer id;
 
 
-
     private String nom;
     private String description;
-
-
-    @ManyToOne
-    @JoinColumn(name = "prestateur_id")
-    private Prestateur prestateur;
 }

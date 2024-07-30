@@ -10,7 +10,7 @@ import com.kalanso.event.Service.StatutEnvoiService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@CrossOrigin(origins="*")
 @RestController
 @RequestMapping("/GestEven/Statut")
 public class StatutController {

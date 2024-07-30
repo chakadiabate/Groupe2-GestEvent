@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/equipements")
+@RequestMapping("/equipements")
 public class EquipementController {
 
     @Autowired
@@ -58,4 +58,3 @@ public class EquipementController {
         }
     }
 }
-

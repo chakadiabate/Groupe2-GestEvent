@@ -1,5 +1,6 @@
 package com.kalanso.event.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -18,7 +19,7 @@ public class RoleUser {
     @Id
     private Long id;
     private String role;
-
+    @JsonBackReference (value = "users")
     @OneToMany(mappedBy = "role")
     private List<Utilisateur> utilisateur;
 }

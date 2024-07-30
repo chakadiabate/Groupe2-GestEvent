@@ -1,5 +1,6 @@
 package com.kalanso.event.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ public class TypeEvent {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String type;
-
+    @JsonBackReference(value = "users")
     @OneToMany(mappedBy = "typeevent")
     private List<Evenement> evenement;
 
