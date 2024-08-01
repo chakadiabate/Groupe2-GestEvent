@@ -41,13 +41,6 @@ public class RoleController {
     public RoleUser modifierCategorie(@PathVariable Long id, @RequestBody RoleUser role) {
         return roleService.ModifierCategorie(id, role);
     }
-
-
-
-
-
-
-
     @PostMapping("/AjouterRolesPresta")
     public RolePrestateur AjouterRolePresta(@RequestBody RolePrestateur roles) {
         return rolePrestateur.Ajout(roles);
